@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<% if (typeof err==='undefined' ) err={}; if (typeof params==='undefined' ) params={}; function showErr(eMsg) { if (eMsg
+  !==undefined) { return `<span class="err">${eMsg}</span><br />`;
+  } else {
+  return '';
+  }
+  }
+  %>
+
+  <body>
+    <div class="container">
+      <form action="/signup" method="post">
+        <div class="registration form">
+          <header>Join with us</header>
+          <label for="name">USERNAME</label>
+          <%- showErr(err.name) %>
+            <input type="text" name="name" placeholder="Enter your name" required>
+            <label for="email">EMAIL</label>
+            <%- showErr(err.email) %>
+              <input type="email" name="email" placeholder="Enter your email" value="<%= params.email %>" required>
+              <label for="password">PASSWORD</label>
+              <%- showErr(err.password1) %>
+                <input type="password" name="password1" placeholder="Create a password" required>
+                <label for="password">CONFIRM PASSWORD</label>
+                <%- showErr(err.password2) %>
+                  <input type="password" name="password2" placeholder="Confirm your password" required>
+                  <div class="success">
+                    <%= typeof msg !=='undefined' ? msg : '' %>
+                  </div>
+                  <button id="button" type="submit">Signup</button>
+        </div>
+        <br>
+        <div class="signup">
+          <p>Already have an account?
+            <a href="/">
+              Sign in now!
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </body>
+
+</html>

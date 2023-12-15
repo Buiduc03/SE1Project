@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outbox</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+    <div class="header">
+        <!-- Display user's full name and a "Sign out" link -->
+        <div class="user-info">
+            <span class="user-name">UserName: <%= userName %></span>
+            <span class="separator"></span>
+            <a class="sign-out" href="/">Sign Out</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="menu">
+            <!-- Vertical menu for navigation -->
+            <ul>
+                <li><a href="/compose">Compose</a></li>
+                <li class="active"><a href="/inbox">Inbox</a></li>
+                <li><a href="/outbox">Outbox</a></li>
+            </ul>
+        </div>
+
+        <div class="inbox">
+            <!-- List of received emails -->
+            <h2>Outbox</h2>
+            <ul class="email-list">
+                <!-- Sample email item, repeat as needed for pagination -->
+                <table class="email-table">
+                    <thead>
+                        <tr>
+                            <th>Recipient's Full Name</th>
+                            <th>Subject</th>
+                            <th>Time Sent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Sample email item, repeat as needed for pagination -->
+                        <% outboxData.forEach(message=> { %>
+                            <tr>
+                                <td>
+                                    <%= message.recipient_name %>
+                                </td>
+                                <td class="email-subject" data-subject="<%= message.subject %>"
+                                    data-body="<%= message.body %>">
+                                    <a href="javascript:void(0);">
+                                        <%= message.subject %>
+                                    </a>
+                                </td>
+                                <td>
+                                    <% const formattedTime=new Date(message.time).toLocaleString('en-US', {
+                                        weekday: 'short' , day: 'numeric' , month: 'numeric' , year: 'numeric' ,
+                                        hour: 'numeric' , minute: 'numeric' , hour12: true }); %>
+                                        <%= formattedTime %>
+                                </td>
+                                <td>
+                                    <!-- Add a deletion -->
+                                    <button type="button">Delete</button>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
+                <br>
+                <!-- Pagination links -->
+                <div class="pagination">
+                    <% for (let i=1; i <=totalPages1; i++) { %>
+                        <a href="/outbox?page=<%= i %>">
+                            <%= i %>
+                        </a>
+                        <% } %>
+                </div>
+                <br>
+        </div>
+    </div>
+    <div class="modal" id="emailModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Subject</h2>
+            <div id="emailSubject"></div>
+            <h2>Body</h2>
+            <div id="emailBody"></div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to open the modal and display the email body
+            function openModal(subject, body) {
+                document.getElementById('emailSubject').innerHTML = subject;
+                document.getElementById('emailBody').innerHTML = body;
+                document.getElementById('emailModal').style.display = 'block';
+            }
+
+            // Function to close the modal
+            function closeModal() {
+                document.getElementById('emailModal').style.display = 'none';
+            }
+
+            // Add click event listeners to each subject cell
+            document.querySelectorAll('.email-subject').forEach(subjectCell => {
+                subjectCell.addEventListener('click', () => {
+                    const subject = subjectCell.getAttribute('data-subject');
+                    const body = subjectCell.getAttribute('data-body');
+                    openModal(subject, body);
+                });
+            });
+            // Close the modal when clicking on the close button
+            document.querySelector('.close').addEventListener('click', closeModal);
+            // Close the modal when clicking outside the modal content
+            window.addEventListener('click', (event) => {
+                if (event.target === document.getElementById('emailModal')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

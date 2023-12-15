@@ -1,0 +1,308 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: #009579;
+    /* Green color for the header */
+    color: #fff;
+    padding: 10px;
+    text-align: right;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-name,
+.sign-out,
+.separator {
+    margin-right: 10px;
+    font-weight: bold;
+    /* Adjust the margin for spacing */
+}
+
+.separator {
+    width: 1px;
+    height: 15px;
+    /* Adjust the height of the separator line */
+    background-color: #ecf0f1;
+    /* Light color for the separator line */
+    margin-right: 10px;
+    /* Adjust the margin for spacing */
+}
+
+.sign-out {
+    color: #ecf0f1;
+    /* Light color for sign-out link */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sign-out:hover {
+    color: #bdc3c7;
+    /* Slightly darker color on hover for sign-out link */
+}
+
+.container {
+    display: flex;
+}
+
+.email-table thead th {
+    font-weight: bold;
+}
+
+.menu {
+    width: 20%;
+    background-color: #d5f5e3;
+    /* Light green background for the menu */
+    padding: 15px;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #138d75;
+    /* Dark green color for menu links */
+    font-weight: bold;
+}
+
+.menu a:hover {
+    color: #186a3b;
+    /* Darker green color on hover */
+}
+
+.inbox {
+    flex: 1;
+    padding: 15px;
+}
+
+.email-list {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+.email-list li {
+    text-decoration: none;
+    color: #2ecc71;
+    /* Green color for email list items */
+    font-weight: bold;
+}
+
+.email-list li .subject {
+    margin-left: 10px;
+    color: #2ecc71;
+    /* Green color for email subjects */
+    font-weight: bold;
+}
+
+.email-list li .time {
+    margin-left: 10px;
+    color: #2ecc71;
+    /* Green color for email times */
+    font-weight: bold;
+}
+
+.pagination {
+    margin-top: 15px;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: #138d75;
+    /* Dark green color for pagination links */
+    margin-right: 10px;
+}
+
+.pagination a:hover {
+    color: #186a3b;
+    /* Darker green color on hover */
+}
+
+.email-table {
+    width: 100%;
+    border-collapse: collapse;
+    /* This property removes the spacing between table cells */
+}
+
+.email-table th,
+.email-table td {
+    border: 1px solid #ddd;
+    /* Add a 1px solid border around each cell */
+    padding: 8px;
+    /* Add padding to the cells for better spacing */
+}
+
+.email-table th {
+    background-color: #d5f5e3;
+    /* Light green background for table header */
+}
+
+/* Style alternate rows with a different background color for better readability */
+.email-table tbody tr:nth-child(even) {
+    background-color: #f0f8f7;
+    /* Slightly darker green background for even rows */
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(169, 169, 169, 0.7);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 100px;
+    /* Increased padding for a larger modal content */
+    background-color: #fff;
+    z-index: 1;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h2 {
+    color: #009579;
+    margin-bottom: 10px;
+}
+
+#emailSubject,
+#emailBody {
+    margin-bottom: 20px;
+}
+
+#emailSubject {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+#emailBody {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+
+}
+
+#emailSubject::after,
+#emailBody::before {
+    content: '';
+    display: block;
+    height: 2px;
+    background-color: #009579;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 8px;
+    /* Reduced padding for a smaller button */
+    font-size: 18px;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.close:hover {
+    background-color: #555;
+}
+
+
+/* Add a subtle animation for a smooth appearance */
+.modal-content {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Add this to your CSS file */
+
+/* Style the links */
+a {
+    text-decoration: none;
+    /* Remove underlines */
+    color: #333;
+    /* Set the default color */
+    transition: color 0.3s ease;
+    /* Add a smooth color transition */
+}
+
+/* Change link color on hover */
+a:hover {
+    color: #009579;
+    /* Change the color on hover to a different shade */
+}
+
+/* Style the active link differently */
+a.active {
+    font-weight: bold;
+    /* Make the active link bold */
+}
+
+/* Style the "Sign Out" link differently */
+a.sign-out {
+    color: white;
+    /* Change the color of the "Sign Out" link */
+}
+
+/* Style pagination links */
+.pagination a {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #009579;
+    border: 1px solid #009579;
+    margin: 0 4px;
+    text-decoration: none;
+    background-color: #d5f5e3;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+
+.pagination a:hover {
+    background-color: #009579;
+    color: white;
+}

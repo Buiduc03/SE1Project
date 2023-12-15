@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compose</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<% if (typeof err==='undefined' ) err={}; if (typeof params==='undefined' ) params={}; function showErr(eMsg) { if (eMsg
+    !==undefined) { return `<span class="err">${eMsg}</span><br />`;
+    } else {
+    return '';
+    }
+    }
+    %>
+
+    <body>
+        <div class="container">
+            <h2>Compose</h2>
+            <form action="/send-email" method="post">
+                <label for="name">Recipient's full name</label>
+                <input type="text" id="name" name="name" required>
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="(no subject)">
+                <label for="email">Recipient's email</label>
+                <input type="text" id="email" name="email" required>
+                <label for="body">Body</label>
+                <textarea id="body" name="body" placeholder="Enter your message"></textarea>
+
+                <label for="attachment">Attachment</label>
+                <input type="file" id="attachment" name="attachment">
+
+                <button type="submit">Send</button>
+                <button type="button" class="back" onclick="location.href='/inbox'">Back</button>
+                <div id="success-message" class="success">
+                    <%= typeof msg !=='undefined' ? msg : '' %>
+                </div>
+            </form>
+
+            <div id="error-message" class="error"></div>
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const form = document.querySelector('form');
+                form.addEventListener('submit', function (event) {
+                    // Form submission logic is now handled by the server
+                });
+            });
+
+        </script>
+    </body>
+
+</html>
